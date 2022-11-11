@@ -1,0 +1,31 @@
+{
+  "name": "backend-vanguard-schools",
+  "version": "1.0.0",
+  "description": "Backend of college system for vanguard schools",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Godofred027/vanguard-school.git"
+  },
+  "author": "Godofred0",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Godofred027/vanguard-school/issues"
+  },
+  "homepage": "https://github.com/Godofred027/vanguard-school#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "express-handlebars": "^6.0.6",
+    "express-mysql-session": "^2.1.8",
+    "express-validator": "^6.14.2",
+    "mysql2": "^2.3.3",
+    "passport": "^0.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
