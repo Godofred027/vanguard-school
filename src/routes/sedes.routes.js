@@ -1,4 +1,11 @@
 import { Router } from "express";
+import {
+  createSede,
+  findSede,
+  findSedes,
+  deleteSede,
+  updateSede,
+} from "../controllers/sedes.controller";
 const router = Router();
 
 router.get("/", findSedes);

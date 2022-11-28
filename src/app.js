@@ -3,6 +3,9 @@ import morgan from "morgan";
 import cors from "cors";
 import config from "./config";
 import userRoutes from "./routes/user.routes";
+import sedesRoutes from "./routes/sedes.routes";
+import nivelesRoutes from "./routes/niveles.routes";
+import costosRoutes from "./routes/costos.routes";
 
 const app = express();
 
@@ -36,5 +39,8 @@ app.get("/api", (req, res) => {
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/sedes", sedesRoutes);
+app.use("/api/niveles", nivelesRoutes);
+app.use("/api/costos", costosRoutes);
 
 export default app;

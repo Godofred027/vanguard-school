@@ -1,9 +1,11 @@
 import pkg from "../package.json";
 import dotenv from "dotenv";
-import timeZone from "moment-timezone";
+import moment from "moment-timezone";
 
 dotenv.config();
-export const datePeru = timeZone.tz(Date.now(), "America/Lima");
+export const datePeru = moment()
+  .tz("America/Lima")
+  .format("YYYY-MM-DD HH:mm:ss");
 export default {
   nameApp: pkg.name,
   authorApp: pkg.author,

@@ -16,6 +16,7 @@ export const findUsers = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 export const createUser = async (req, res) => {
   try {
     const newUser = new User({
@@ -33,10 +34,9 @@ export const createUser = async (req, res) => {
 };
 
 export const findOneUsers = async (req, res) => {
+  const { numeroDocumento } = req.params;
   try {
-    const user = await User.findOne({
-      numeroDocumento: req.params.numeroDocumento,
-    });
+    const user = await User.findOne({ numeroDocumento });
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });

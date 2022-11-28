@@ -26,11 +26,11 @@ const UserSchema = new Schema(
       required: true,
     },
     createdAt: {
-      type: Date,
+      type: String,
       default: datePeru,
     },
     updatedAt: {
-      type: Date,
+      type: String,
       default: datePeru,
     },
   },
