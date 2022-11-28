@@ -1,5 +1,6 @@
 import app from "./app";
+import "./connection";
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Server is running...");
+app.listen(app.get("port"), () => {
+  console.log(`Server is running on port`, app.get("port"));
 });
