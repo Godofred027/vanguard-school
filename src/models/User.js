@@ -15,15 +15,14 @@ const UserSchema = new Schema(
     },
     correo: {
       type: String,
-      required: true,
     },
     contrasena: {
       type: String,
       required: true,
     },
-    rol: {
-      type: Array,
-      required: true,
+    roles: {
+      ref: "Role",
+      type: Schema.Types.ObjectId,
     },
     createdAt: {
       type: String,

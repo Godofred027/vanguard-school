@@ -18,6 +18,10 @@ const PersonalSchema = new Schema({
     required: true,
     unique: true,
   },
+  contrasena: {
+    type: String,
+    required: true,
+  },
   genero: {
     type: String,
     required: true,
@@ -117,6 +121,10 @@ const PersonalSchema = new Schema({
   salida: {
     type: Date,
     required: false,
+  },
+  roles: {
+    ref: "Role",
+    type: Schema.Types.ObjectId,
   },
 });
 

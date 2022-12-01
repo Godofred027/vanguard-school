@@ -29,9 +29,9 @@ const AlumnoSchema = new Schema(
       type: String,
       required: true,
     },
-    rol: {
-      type: Array,
-      required: true,
+    roles: {
+      ref: "Role",
+      type: Schema.Types.ObjectId,
     },
     genero: {
       type: String,
@@ -70,6 +70,10 @@ const AlumnoSchema = new Schema(
       required: true,
     },
     parentescoApoderado: {
+      type: String,
+      required: true,
+    },
+    celularApoderado: {
       type: String,
       required: true,
     },

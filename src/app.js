@@ -2,10 +2,14 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import config from "./config";
+import indexRoutes from "./routes/index.routes";
 import userRoutes from "./routes/user.routes";
 import sedesRoutes from "./routes/sedes.routes";
 import nivelesRoutes from "./routes/niveles.routes";
 import costosRoutes from "./routes/costos.routes";
+import areasRoutes from "./routes/areas.routes";
+import cursosRoutes from "./routes/cursos.routes";
+import asignaturasRoutes from "./routes/asignaturas.routes";
 
 const app = express();
 
@@ -19,28 +23,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //routes
-
-app.get("/", (req, res) => {
-  res.json({
-    name: config.nameApp,
-    author: config.authorApp,
-    description: config.descriptionApp,
-    version: config.versionApp,
-  });
-});
-
-app.get("/api", (req, res) => {
-  res.json({
-    name: config.nameApp,
-    author: config.authorApp,
-    description: config.descriptionApp,
-    version: config.versionApp,
-  });
-});
-
-app.use("/api/users", userRoutes);
+app.use("/", indexRoutes);
+app.use("/api/usuarios", userRoutes);
 app.use("/api/sedes", sedesRoutes);
 app.use("/api/niveles", nivelesRoutes);
 app.use("/api/costos", costosRoutes);
+app.use("/api/areas", areasRoutes);
+app.use("/api/cursos", cursosRoutes);
+app.use("/api/asignaturas", asignaturasRoutes);
 
 export default app;

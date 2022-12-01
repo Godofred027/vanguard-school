@@ -1,5 +1,7 @@
 import User from "../models/User.js";
 import { getPagination } from "../libs/getPagination.js";
+import { encrypt } from "../libs/passEncrypt.js";
+import Role from "../models/Role.js";
 
 export const findUsers = async (req, res) => {
   try {
@@ -19,13 +21,22 @@ export const findUsers = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
+    const { nombre, numeroDocumento, correo, contrasena, roles } = req.body;
     const newUser = new User({
-      nombre: req.body.nombre,
-      numeroDocumento: req.body.numeroDocumento,
-      correo: req.body.correo,
-      contrasena: req.body.contrasena,
-      rol: req.body.rol,
+      nombre,
+      numeroDocumento,
+      correo,
+      contrasena: await encrypt(contrasena),
+      roles,
     });
+
+    if (roles) {
+      const foundRoles = await Role.find({ name: { $in: roles } });
+      newUser.rol = foundRoles.map((role) => role._id);
+    } else {
+      const role = await Role.findOne({ name: "Alumno" });
+      newUser.roles = [role._id];
+    }
     await newUser.save();
     res.json({ message: "User Created" });
   } catch (error) {
@@ -45,7 +56,11 @@ export const findOneUsers = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
-    await User.findOneAndUpdate(req.params.numeroDocumento, req.body);
+    await User.findOneAndUpdate(
+      { numeroDocumento: req.params.numeroDocumento },
+      req.body,
+      { new: true }
+    );
     res.json({ message: "User Updated" });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -54,7 +69,9 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
-    await User.findByIdAndDelete(req.params.numeroDocumento);
+    await User.findOneAndRemove({
+      numeroDocumento: req.params.numeroDocumento,
+    });
     res.json({ message: "User Deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });

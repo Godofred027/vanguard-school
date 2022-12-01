@@ -61,3 +61,14 @@ export const deleteNivel = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const findGradosByNivel = async (req, res) => {
+  const { nivel } = req.params;
+  try {
+    const grados = await Nivel.findOne({ nombre: nivel });
+    console.log(grados);
+    res.status(200).json(grados.grados);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
